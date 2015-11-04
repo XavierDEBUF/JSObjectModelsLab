@@ -89,7 +89,14 @@
     };
     var newBuilding = createShape(attributes);
     newBuilding.getArea = function(){
-      return attributes.nodes[2].x*attributes.nodes[2].y;
+      var myArea = 0;
+        for(var cpt = 0; cpt < attributes.nodes.length; cpt++)
+        {
+          var myNextCpt = (cpt + 1 == attributes.nodes.length) ? 0 : cpt + 1;
+          myArea += attributes.nodes[cpt].x * attributes.nodes[myNextCpt].y - attributes.nodes[cpt].y * attributes.nodes[myNextCpt].x;
+        }
+
+        return myArea / 2;
     }
     return newBuilding;
   }
