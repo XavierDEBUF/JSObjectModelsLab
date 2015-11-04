@@ -1,6 +1,6 @@
 (function(global) {
   'use strict';
-  global.SpeedCheck = {};
+  global.SpeedCheck = {VERSION:'0.0.1'};
 
   function SpeedCheckError(message){
     this.message = message;
@@ -38,7 +38,10 @@
               }
           },
           toString: {
-              /* TODO: Implement this function */
+            value: function()
+             {
+                return "Véhicule " + this._licencePlate + " roule à " + this._speed + " km/h. " + ((this._infraction) ? "Infraction!" : "Ça va, circulez...");
+              }
           },
           infraction: {
               get: function() {
@@ -87,10 +90,10 @@
   }
 
   // Expose public API
-  global.createSpeedCheck = createSpeedCheck;
-  global.SpeedCheckError = SpeedCheckError;
-  global.createSpeedCheckFR = createSpeedCheckFR;
-  global.createSpeedCheckBE = createSpeedCheckBE;
+  global.SpeedCheck.createSpeedCheck = createSpeedCheck;
+  global.SpeedCheck.SpeedCheckError = SpeedCheckError;
+  global.SpeedCheck.createSpeedCheckFR = createSpeedCheckFR;
+  global.SpeedCheck.createSpeedCheckBE = createSpeedCheckBE;
 
 
 }(this));
