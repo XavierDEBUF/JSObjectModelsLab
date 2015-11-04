@@ -48,11 +48,71 @@
     };
     return shape;
   }
-
+  function createRoad(attributes){
+    attributes = attributes || {};
+    attributes.categorie= attributes.categorie|| " ";
+    if (typeof attributes.categorie !== 'string'){
+        throw {
+            name: "TypeError",
+            message: "'categorie' need string"
+        };
+    };
+    var newRoad = createShape(attributes);
+    newRoad.getCategory = function(){
+      return attributes.highway;
+    }
+    return newRoad;
+  }
+  function createAmenity(attributes){
+    attributes = attributes || {};
+    attributes.type= attributes.type|| " ";
+    if (typeof attributes.type !== 'string'){
+        throw {
+            name: "TypeError",
+            message: "'type' need string"
+        };
+    };
+    var newAmenity = createShape(attributes);
+    newAmenity.getType = function(){
+      return attributes.amenity;
+    }
+    return newAmenity;
+  }
+  function createBuilding(attributes){
+    attributes = attributes || {};
+    attributes.area = attributes.area || 0;
+    if (typeof attributes.area !== 'number'){
+        throw {
+            name: "TypeError",
+            message: "'area' need number"
+        };
+    };
+    var newBuilding = createShape(attributes);
+    newBuilding.getArea = function(){
+      return attributes.nodes[2].x*attributes.nodes[2].y;
+    }
+    return newBuilding;
+  }
+  function createNatural(attributes){
+    attributes = attributes || {};
+    attributes.type= attributes.type|| " ";
+    if (typeof attributes.type !== 'string'){
+        throw {
+            name: "TypeError",
+            message: "'type' need string"
+        };
+    };
+    var newNatural = createShape(attributes);
+    newNatural.getType = function(){
+      return attributes.natural;
+    }
+    return newNatural;
+  }
     global.Shapes.createShape = createShape;
-  //  global.SpeedCheck.SpeedCheckError = SpeedCheckError;
-
-     // return the newly created object.
+    global.Shapes.createRoad = createRoad;
+    global.Shapes.createAmenity=createAmenity;
+    global.Shapes.createBuilding=createBuilding;
+    global.Shapes.createNatural=createNatural;
 
 
   }(this));
